@@ -20,11 +20,9 @@
 <!--讨论区滚动条end-->
 </head>
 <body>
-<%
-String fromId=((User)session.getAttribute("user")).getId();
-%>
+
 <div class="talk">
-	<div class="talk_title"><span>手机讨论发言</span></div>
+	<div class="talk_title"><span></span></div>
 	<div class="talk_record">
 		<div id="jp-container" class="jp-container">
 <!-- 			<div class="talk_recordboxme">
