@@ -7,12 +7,13 @@
     <result column="password" property="passWord" jdbcType="VARCHAR" />
     <result column="realname" property="realName" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
   </resultMap>
   
   <!-- 用户登陆 -->
   <select id="login" parameterType="com.my.im.model.User" resultMap="BaseResultMap">
     select 
-	  	t.id,t.username,t.password,t.realname,t.state
+	  	t.id,t.username,t.password,t.realname,t.state,t.photo
 	from 
 		user t
     where 
@@ -22,11 +23,9 @@
   <!-- 查询在线用户 -->
   <select id="onlineUser" resultMap="BaseResultMap">
     select 
-	  	t.id,t.username,t.password,t.realname,t.state
+	  	t.id,t.username,t.password,t.realname,t.state,t.photo
 	from 
 		user t
-	where 
-		t.state = 1
   </select>
 
   <!-- 更改用户状态 -->

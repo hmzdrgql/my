@@ -31,9 +31,9 @@ public class EchoEndpoint {
         //System.out.println("pathParams:"+session.getPathParameters());  
         //System.out.println("requestParams"+session.getRequestParameterMap()); 
         
-		User user = MemberUtil.getCurrentUser();
-		user.setState(1);
-		userService.offTheLine(user);
+//		User user = MemberUtil.getCurrentUser();
+//		user.setState(1);
+//		userService.offTheLine(user);
 		
         if(session!=null)    
         {    
@@ -46,6 +46,8 @@ public class EchoEndpoint {
 	public void onMessage(Session session, String message) {
 		
 		System.out.println(message);
+		
+		
 	
 	  
 //		for (Map.Entry<String, Session> entry : mymap.entrySet()) {
@@ -73,9 +75,9 @@ public class EchoEndpoint {
         {    
         	myc.DelSession(session);
         }    
-		User user = MemberUtil.getCurrentUser();
-		user.setState(0);
-		userService.offTheLine(user);
+//		User user = MemberUtil.getCurrentUser();
+//		user.setState(0);
+//		userService.offTheLine(user);
 	} 
 	
 }

@@ -7,6 +7,7 @@ public class User {
 	private String passWord;
 	private String realName;
 	private Integer state;
+	private String photo;
 	public Integer getId() {
 		return id;
 	}
@@ -37,10 +38,16 @@ public class User {
 	public void setState(Integer state) {
 		this.state = state;
 	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", passWord=" + passWord + ", realName=" + realName
-				+ ", state=" + state + "]";
+				+ ", state=" + state + ", photo=" + photo + "]";
 	}
 	
 }

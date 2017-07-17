@@ -14,8 +14,8 @@
         function sendMessage()
         {
         	var message = document.getElementById('message').value;  
-            var msg="发送消息";
-            send(message);
+            //var msg="发送消息";
+            send("{message:"+message+",type:RC:TxtMsg,fromUser:,toUser}");
         }
         function send(data)
         {
@@ -24,10 +24,9 @@
         }
         function startWebSocket()
         {    
-            ws = new WebSocket("ws://li.tunnel.qydev.com/demo/im");
+            ws = new WebSocket("ws://li.tunnel.qydev.com/my/im");
             ws.onopen = function(){
 	        	console.log("发起连接请求");
-	        	ws.send();
             };
             ws.onmessage = function(event)
             {
