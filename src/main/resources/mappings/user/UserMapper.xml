@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.my.im.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.my.im.model.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="passWord" jdbcType="VARCHAR" />
+    <result column="realname" property="realName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <!-- 用户登陆 -->
+  <select id="login" parameterType="com.my.im.model.User" resultMap="BaseResultMap">
+    select 
+	  	t.id,t.username,t.password,t.realname,t.state
+	from 
+		user t
+    where 
+    	t.username = #{userName,jdbcType=VARCHAR} 
+  </select>
+  
+  <!-- 查询在线用户 -->
+  <select id="onlineUser" resultMap="BaseResultMap">
+    select 
+	  	t.id,t.username,t.password,t.realname,t.state
+	from 
+		user t
+	where 
+		t.state = 1
+  </select>
+
+  <!-- 更改用户状态 -->
+  <update id="offTheLine" parameterType="com.my.im.model.User">
+    update 
+      	user
+    set 
+      	state = #{state,jdbcType=INTEGER}
+    where 
+      	id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>
