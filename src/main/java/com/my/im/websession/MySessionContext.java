@@ -25,19 +25,20 @@ public class MySessionContext {
         }    
         return instance;    
     }    
-    public synchronized void AddSession(Session session)    
+    public synchronized void AddSession(String id,Session session)    
     {    
         if(session!=null)    
         {    
         	onlineCount+=1;
-            mymap.put(session.getId(), session);    
+//            mymap.put(session.getId(), session); 
+        	mymap.put(id, session);  
         }    
     }    
-    public synchronized void DelSession(Session session)    
+    public synchronized void DelSession(String id,Session session)    
     {    
         if(session!=null)    
         {    
-            mymap.remove(session.getId()); 
+            mymap.remove(id); 
             onlineCount-=1;
         }    
     }    

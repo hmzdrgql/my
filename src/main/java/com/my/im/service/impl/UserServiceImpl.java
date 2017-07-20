@@ -27,4 +27,9 @@ public class UserServiceImpl implements IUserService{
 		return userMapper.offTheLine(user);
 	}
 
+	@Override
+	public User getById(String id) {
+		return userMapper.getById(id);
+	}
+
 }

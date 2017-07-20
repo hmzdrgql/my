@@ -10,7 +10,7 @@
 
 <!--讨论区滚动条begin-->
 <link rel="stylesheet" type="text/css" href="${ctx}/static/css/jscrollpane1.css" />
-<!-- <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script> -->
+<script src="${ctx}/static/js/jquery-1.4.2.min.js" type="text/javascript"></script>
 <!--引用jquery-1.4.2.min.js会影响添加表情，不引用jquery-1.4.2.min.js就不支持IE、火狐浏览器的鼠标滚轮插件-->
 <!-- the mousewheel plugin -->
 <script type="text/javascript" src="${ctx}/static/js/jquery.mousewheel.js"></script>
@@ -25,7 +25,7 @@
 	<div class="talk_title"><span></span></div>
 	<div class="talk_record">
 		<div id="jp-container" class="jp-container">
-<!-- 			<div class="talk_recordboxme">
+ <!-- 			<div class="talk_recordboxme">
 				<div class="user"><img src="images/thumbs/15.jpg"/></div>
 				<div class="talk_recordtextbg">&nbsp;</div>
 				<div class="talk_recordtext">
@@ -41,7 +41,7 @@
 					<h3>对方的回答是：1+1=2</h3>
 					<span class="talk_time">2014-09-15 15:06</span>
 				</div>
-			</div> -->
+			</div>  -->
 			
 		</div>
 	
@@ -55,9 +55,14 @@
 	</div>
 </div>
 
+<input type="hidden" value="${user.id}" id="userId"/>
+<input type="hidden" value="${toUser.id}" id="toUserId"/>
+<input type="hidden" value="${user.photo}" id="userPhoto"/>
+<input type="hidden" value="${ctx}" id="path"/>
+
 
 <script type="text/javascript">
-$(function(){
+ $(function(){
 
 	// the element we want to apply the jScrollPane
 	var $el= $('#jp-container').jScrollPane({
@@ -201,8 +206,8 @@ $(function(){
 	// extend the jScollPane by merging	
 	$.extend( true, jspapi, extensionPlugin );
 	jspapi.addHoverFunc();
-
-});
+	
+}); 
 </script>
 </body>
 </html>

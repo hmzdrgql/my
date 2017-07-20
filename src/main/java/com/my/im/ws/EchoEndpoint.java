@@ -11,10 +11,13 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import com.my.common.utils.DateUtils;
 import com.my.common.utils.MemberUtil;
 import com.my.im.model.User;
 import com.my.im.service.IUserService;
 import com.my.im.websession.MySessionContext;
+
+import net.sf.json.JSONObject;
 
 @ServerEndpoint("/im")
 public class EchoEndpoint {
@@ -28,16 +31,17 @@ public class EchoEndpoint {
 	public void onOpen(Session session) throws IOException {
 		System.out.println("session "+session.getId()+" open.");  
 		
-        //System.out.println("pathParams:"+session.getPathParameters());  
-        //System.out.println("requestParams"+session.getRequestParameterMap()); 
+//        System.out.println("pathParams:"+session.getPathParameters());  
+        System.out.println("requestParams"+session.getRequestParameterMap()); 
         
 //		User user = MemberUtil.getCurrentUser();
 //		user.setState(1);
 //		userService.offTheLine(user);
-		
+        String userId = session.getRequestParameterMap().get("userId").get(0);
+        
         if(session!=null)    
         {    
-        	myc.AddSession(session);
+        	myc.AddSession(userId,session);
         }  
 	}
 	
@@ -47,9 +51,24 @@ public class EchoEndpoint {
 		
 		System.out.println(message);
 		
+		message = message.substring(0,message.length()-1)+",\"datetime\":\""+DateUtils.getCurrentTime()+"\"}";
 		
-	
-	  
+		JSONObject json = JSONObject.fromObject(message);
+		if(json.getString("type").equals("RC:TxtMsg")){
+			System.out.println(json.getInt("fromUser"));
+			System.out.println(json.getInt("toUser"));
+			try {
+				session.getBasicRemote().sendText(message);
+				Session toUserSession = myc.getSession(json.getString("toUser"));
+				if(toUserSession != null){
+					System.out.println("发送的用户在线");
+					toUserSession.getBasicRemote().sendText(message);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 //		for (Map.Entry<String, Session> entry : mymap.entrySet()) {
 //			System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
 //		    try {  
@@ -62,18 +81,26 @@ public class EchoEndpoint {
 	@OnError
 	public void onError(Session session, Throwable throwable) {
 		System.err.println("session "+session.getId()+" error:"+throwable); 
+		
+		String userId = session.getRequestParameterMap().get("userId").get(0);
+		
         if(session!=null)    
         {    
-        	myc.DelSession(session);
+        	myc.DelSession(userId,session);
         }    
 	}
 	 
 	@OnClose
 	public void onClose(Session session, CloseReason reason) {
 		System.out.println("session "+session.getId()+" close.");  
+		
+		System.out.println("requestParams"+session.getRequestParameterMap()); 
+		
+		String userId = session.getRequestParameterMap().get("userId").get(0);
+		 
         if(session!=null)    
         {    
-        	myc.DelSession(session);
+        	myc.DelSession(userId,session);
         }    
 //		User user = MemberUtil.getCurrentUser();
 //		user.setState(0);

@@ -27,6 +27,16 @@
 	from 
 		user t
   </select>
+  
+  <!-- 根据id查询用户 -->
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+	  	t.id,t.username,t.password,t.realname,t.state,t.photo
+	from 
+		user t
+	where
+		id = #{id,jdbcType=VARCHAR}
+  </select>
 
   <!-- 更改用户状态 -->
   <update id="offTheLine" parameterType="com.my.im.model.User">

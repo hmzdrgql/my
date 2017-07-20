@@ -159,7 +159,7 @@ a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免�
 }
 
 /* * CSS Styles that are needed by jScrollPane for it to operate correctly. * * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane * may not operate correctly without them. */
-.jspContainer{overflow:hidden;position:relative;}
+.jspContainer{overflow:hidden;position:relative;overflow-y:scroll;}
 .jspPane{position:absolute;}
 .jspVerticalBar{position:absolute;top:0;right:0;width:8px;height:100%;background-color:transparent;}
 .jspHorizontalBar{position:absolute;bottom:0;left:0;width:100%;height:8px;background-color:transparent;}
@@ -200,7 +200,7 @@ a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免�
 	width:10px;
 	height:30px;
 	display:block;
-	background-image: url(../images/talk_recordtext.png);
+	background-image: url(../images/system/talk_recordtext.png);
 	background-repeat: no-repeat;
 	background-position: left top;}
 .jp-container .talk_recordbox .talk_recordtext{
@@ -235,6 +235,10 @@ a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免�
 	line-height: 20px;
 	text-align: center;
 }
+.jp-container .talk_recordbox .user img{
+	height: 45px;
+	width: 45px;
+}
 /*自己发言样式*/
 .jp-container .talk_recordboxme{
 	display:block;
@@ -250,7 +254,7 @@ a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免�
 	width:10px;
 	height:30px;
 	display:block;
-	background-image: url(../images/talk_recordtextme.png);
+	background-image: url(../images/system/talk_recordtextme.png);
 	background-repeat: no-repeat;
 	background-position: left top;}
 
@@ -287,6 +291,10 @@ a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免�
 	line-height: 20px;
 	text-align: center;
 	display:inline;
+}
+.jp-container .talk_recordboxme .user img{
+	height: 45px;
+	width: 45px;
 }
 .talk_time{
 	color: #666;

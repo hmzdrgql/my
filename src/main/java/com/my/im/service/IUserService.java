@@ -11,4 +11,6 @@ public interface IUserService {
 	public List<User> onlineUser();
 	
 	public Integer offTheLine(User user);
+	
+	public User getById(String id);
 }
