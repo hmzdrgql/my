@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.my.im.model.Message;
 import com.my.im.model.User;
+import com.my.im.service.IMessageService;
 import com.my.im.service.IUserService;
 
 @Controller
@@ -24,6 +26,8 @@ public class LinkController {
 	
 	@Autowired
 	private IUserService userService;
+	@Autowired
+	private IMessageService messageService;
 
 	/**
 	 * 跳转到登录

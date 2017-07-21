@@ -2,7 +2,6 @@ package com.my.im.ws;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
 import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -11,10 +10,13 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.ContextLoader;
+
 import com.my.common.utils.DateUtils;
-import com.my.common.utils.MemberUtil;
-import com.my.im.model.User;
+import com.my.im.model.Message;
 import com.my.im.service.IUserService;
+import com.my.im.service.impl.MessageServiceImpl;
 import com.my.im.websession.MySessionContext;
 
 import net.sf.json.JSONObject;
@@ -24,7 +26,7 @@ public class EchoEndpoint {
 	
 	private MySessionContext myc=MySessionContext.getInstance();
 	
-	@Resource
+	@Autowired
 	private IUserService userService;
    
 	@OnOpen
@@ -60,10 +62,17 @@ public class EchoEndpoint {
 			try {
 				session.getBasicRemote().sendText(message);
 				Session toUserSession = myc.getSession(json.getString("toUser"));
+				//保存消息
+				Message m=(Message)JSONObject.toBean(json, Message.class);
 				if(toUserSession != null){
 					System.out.println("发送的用户在线");
 					toUserSession.getBasicRemote().sendText(message);
+					m.setOffLine(1);
+				}else{
+					m.setOffLine(0);
 				}
+				MessageServiceImpl messageService = (MessageServiceImpl) ContextLoader.getCurrentWebApplicationContext().getBean("messageService");
+				messageService.insert(m);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

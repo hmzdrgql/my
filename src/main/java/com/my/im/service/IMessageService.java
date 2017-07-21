@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.my.im.model.Message;
 
-public interface ImessageService {
+public interface IMessageService {
 
 	/**
 	 * 添加消息记录

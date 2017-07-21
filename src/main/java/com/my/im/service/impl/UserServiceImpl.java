@@ -9,7 +9,7 @@ import com.my.im.dao.UserMapper;
 import com.my.im.model.User;
 import com.my.im.service.IUserService;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements IUserService{
 
 	@Autowired

@@ -25,7 +25,7 @@
             userPhoto = document.getElementById('userPhoto').value;
         	var message = document.getElementById('message').value;  
             //var msg="发送消息";
-            send("{\"message\":\""+message+"\",\"type\":\"RC:TxtMsg\",\"fromUser\":"+userId+",\"toUser\":"+toUserId+",\"userPhoto\":\""+userPhoto+"\"}");
+            send("{\"content\":\""+message+"\",\"type\":\"RC:TxtMsg\",\"fromUser\":"+userId+",\"toUser\":"+toUserId+",\"userPhoto\":\""+userPhoto+"\"}");
         }
         function send(data)
         {
@@ -38,7 +38,7 @@
         	
         	userId = document.getElementById('userId').value;
             /*ws = new WebSocket("ws://li.tunnel.qydev.com/my/im");*/
-        	ws = new WebSocket("ws://pii25v.natappfree.cc/my/im?userId="+userId);
+        	ws = new WebSocket("ws://li.tunnel.qydev.com/my/im?userId="+userId);
         	
         	var heartCheck = {
     		    timeout: 60000,//60ms
@@ -52,7 +52,7 @@
     		    start: function(){
     		        var self = this;
     		        this.timeoutObj = setTimeout(function(){
-    		            ws.send("{\"message\":\"HeartBeat\",\"type\":\"RC:CmdNtf\"}");
+    		            ws.send("{\"content\":\"HeartBeat\",\"type\":\"RC:CmdNtf\"}");
     		            self.serverTimeoutObj = setTimeout(function(){
     		                ws.close();//如果onclose会执行reconnect，我们执行ws.close()就行了.如果直接执行reconnect 会触发onclose导致重连两次
     		            }, self.timeout)
@@ -79,7 +79,7 @@
                 		html +="<div class='user'><img src='"+path+"/static/"+result.userPhoto+"'/></div>"; 
                 		html +="<div class='talk_recordtextbg'>&nbsp;</div>";
                 		html +="<div class='talk_recordtext'>";
-                		html +="<h3>"+result.message+"</h3>";
+                		html +="<h3>"+result.content+"</h3>";
                 		html +="<span class='talk_time'>"+result.datetime+"</span>";
                 		html +="</div></div>";
                 		
@@ -91,7 +91,7 @@
                 		html +="<div class='user'><img src='"+path+"/static/"+result.userPhoto+"'/></div>"; 
                 		html +="<div class='talk_recordtextbg'>&nbsp;</div>";
                 		html +="<div class='talk_recordtext'>";
-                		html +="<h3>"+result.message+"</h3>";
+                		html +="<h3>"+result.content+"</h3>";
                 		html +="<span class='talk_time'>"+result.datetime+"</span>";
                 		html +="</div></div>";
                 		

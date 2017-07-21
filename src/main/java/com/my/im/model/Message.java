@@ -5,9 +5,12 @@ public class Message {
 	private Long id;
 	private Integer fromUser;
 	private Integer toUser;
+	private Integer toGroup;
 	private String content;
 	private String datetime;
 	private String type;
+	private Integer offLine;
+	private String userPhoto;
 	public Long getId() {
 		return id;
 	}
@@ -26,6 +29,12 @@ public class Message {
 	public void setToUser(Integer toUser) {
 		this.toUser = toUser;
 	}
+	public Integer getToGroup() {
+		return toGroup;
+	}
+	public void setToGroup(Integer toGroup) {
+		this.toGroup = toGroup;
+	}
 	public String getContent() {
 		return content;
 	}
@@ -43,6 +52,24 @@ public class Message {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public Integer getOffLine() {
+		return offLine;
+	}
+	public void setOffLine(Integer offLine) {
+		this.offLine = offLine;
+	}
+	public String getUserPhoto() {
+		return userPhoto;
+	}
+	public void setUserPhoto(String userPhoto) {
+		this.userPhoto = userPhoto;
+	}
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", fromUser=" + fromUser + ", toUser=" + toUser + ", toGroup=" + toGroup
+				+ ", content=" + content + ", datetime=" + datetime + ", type=" + type + ", offLine=" + offLine
+				+ ", userPhoto=" + userPhoto + "]";
 	}
 	
 	
