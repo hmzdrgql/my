@@ -1,6 +1,15 @@
 package com.my.im.model;
 
 public class Message {
+	
+	public Message(){
+		
+	}
+	
+	public Message(Integer fromUser,Integer toUser){
+		this.fromUser = fromUser;
+		this.toUser = toUser; 
+	}
 
 	private Long id;
 	private Integer fromUser;

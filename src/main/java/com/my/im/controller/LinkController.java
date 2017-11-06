@@ -21,7 +21,7 @@ import com.my.im.service.IMessageService;
 import com.my.im.service.IUserService;
 
 @Controller
-@RequestMapping("/link")
+@RequestMapping("/im/link")
 public class LinkController {
 	
 	@Autowired
@@ -30,12 +30,12 @@ public class LinkController {
 	private IMessageService messageService;
 
 	/**
-	 * 跳转到登录
+	 * 跳转到登录页面
 	 * @return
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login() {
-		return "login";
+		return "im/login";
 	}
 	 
 	@RequestMapping(value="/login",method=RequestMethod.POST)
@@ -44,7 +44,7 @@ public class LinkController {
 		if(user != null){
 			request.getSession().setAttribute("user", user);
 		}
-		return "redirect:/link/index";
+		return "redirect:/im/link/index";
 	}
 	 
 	/**
@@ -65,12 +65,28 @@ public class LinkController {
 	 * @return
 	 */
 	@RequestMapping(value="/conversation/{id}",method=RequestMethod.GET)
-	public String conversation(@PathVariable String id,ModelMap modelMap) {
+	public String conversation(@PathVariable String id,ModelMap modelMap,HttpServletRequest request) {
 		
 		User toUser = userService.getById(id);
 		modelMap.put("toUser", toUser);
 		
+		//获取当前用户
+		User fromUser = (User)request.getSession().getAttribute("user");
+		//查询历史聊天记录
+		Message message = new Message(fromUser.getId(),toUser.getId());
+		List<Message> list = messageService.getFriendMessages(message);
+		modelMap.put("list", list);
+		
 		return "im/conversation";
+	}
+
+	/**
+	 * 直播后台
+	 * @return
+     */
+	@RequestMapping(value="/toLiveBackstage",method=RequestMethod.GET)
+	public String toLiveBackstage(){
+		return "im/live_backstage";
 	}
 	
 	@ResponseBody
@@ -81,7 +97,6 @@ public class LinkController {
 		
 		List<User> list = userService.onlineUser();
 		datas.put("list", list);
-		System.out.println(list.size());
 		return datas;
 	}
 	 

@@ -86,5 +86,6 @@
 	<!--启用事务注解 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
+    <import resource="spring-config-shiro.xml"/>
 
  </beans>

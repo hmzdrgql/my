@@ -38,7 +38,7 @@
         	
         	userId = document.getElementById('userId').value;
             /*ws = new WebSocket("ws://li.tunnel.qydev.com/my/im");*/
-        	ws = new WebSocket("ws://li.tunnel.qydev.com/my/im?userId="+userId);
+        	ws = new WebSocket("ws://li.tunnel.qydev.com/im?userId="+userId);
         	
         	var heartCheck = {
     		    timeout: 60000,//60ms

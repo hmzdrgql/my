@@ -14,9 +14,10 @@
 			<a href="${ctx }/link/conversation/${friend.id}"><span class="notice_span">${friend.realName }</span></a>
 		</c:forEach>
 	</div>
+	<a href="${ctx }/im/link/toLiveBackstage"><span>直播后台</span></a>
 	
 	<script type="text/javascript">
 	
 	</script>
 </body>
-</html>
+</html>

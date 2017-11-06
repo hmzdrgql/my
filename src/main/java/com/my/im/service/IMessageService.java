@@ -22,11 +22,11 @@ public interface IMessageService {
 	 * 获取消息记录（好友）
 	 * @return
 	 */
-	public List<Message> getFriendMessages();
+	public List<Message> getFriendMessages(Message message);
 	
 	/**
 	 * 获取消息记录（群组）
 	 * @return
 	 */
-	public List<Message> getGroupMessages();
+	public List<Message> getGroupMessages(Message message);
 }

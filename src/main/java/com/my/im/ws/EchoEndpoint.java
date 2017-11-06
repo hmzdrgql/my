@@ -56,10 +56,10 @@ public class EchoEndpoint {
 		message = message.substring(0,message.length()-1)+",\"datetime\":\""+DateUtils.getCurrentTime()+"\"}";
 		
 		JSONObject json = JSONObject.fromObject(message);
-		if(json.getString("type").equals("RC:TxtMsg")){
-			System.out.println(json.getInt("fromUser"));
-			System.out.println(json.getInt("toUser"));
-			try {
+		try {
+			if(json.getString("type").equals("RC:TxtMsg")){
+				System.out.println(json.getInt("fromUser"));
+				System.out.println(json.getInt("toUser"));
 				session.getBasicRemote().sendText(message);
 				Session toUserSession = myc.getSession(json.getString("toUser"));
 				//保存消息
@@ -73,9 +73,12 @@ public class EchoEndpoint {
 				}
 				MessageServiceImpl messageService = (MessageServiceImpl) ContextLoader.getCurrentWebApplicationContext().getBean("messageService");
 				messageService.insert(m);
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
+			if(json.getString("type").equals("RC:CmdNtf")){
+					session.getBasicRemote().sendText(message);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 //		for (Map.Entry<String, Session> entry : mymap.entrySet()) {

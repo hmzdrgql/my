@@ -12,10 +12,20 @@
     <result column="offLine" property="offLine" jdbcType="INTEGER" />
     <result column="userPhoto" property="userPhoto" jdbcType="VARCHAR" />
   </resultMap>
-  
+  	
+  	<!-- 保存聊天记录 -->
 	<insert id="insert" parameterType="com.my.im.model.Message" useGeneratedKeys="true" keyProperty="id">
 		insert into message_log (fromUser, toUser, toGroup, content, datetime, type, offLine, userPhoto) 
 		values(#{fromUser}, #{toUser}, #{toGroup}, #{content}, #{datetime}, #{type}, #{offLine}, #{userPhoto})
 	</insert>
-  
+	
+	<!-- 查询离线记录数 -->
+  	<select id="offlineFriendMessage" parameterType="com.my.im.model.Message" resultMap="BaseResultMap">
+  		select count(*) from message_log where fromUser = #{fromUser} and toUser = #{toUser} and offLine = 0
+  	</select>
+  	
+  	<!-- 查询好友聊天记录 -->
+  	<select id="getFriendMessages" parameterType="com.my.im.model.Message" resultMap="BaseResultMap">
+  		select * from message_log where fromUser = #{fromUser} and toUser = #{toUser}
+  	</select>
 </mapper>

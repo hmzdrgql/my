@@ -17,7 +17,8 @@
 	from 
 		user t
     where 
-    	t.username = #{userName,jdbcType=VARCHAR} 
+    	t.username = #{userName,jdbcType=VARCHAR}
+    	and t.password = #{passWord,jdbcType=VARCHAR}
   </select>
   
   <!-- 查询在线用户 -->

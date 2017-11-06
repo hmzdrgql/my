@@ -26,12 +26,12 @@ public class MessageServiceImpl implements IMessageService{
 	}
 
 	@Override
-	public List<Message> getFriendMessages() {
-		return null;
+	public List<Message> getFriendMessages(Message message) {
+		return messageMapper.getFriendMessages(message);
 	}
 
 	@Override
-	public List<Message> getGroupMessages() {
+	public List<Message> getGroupMessages(Message message) {
 		return null;
 	}
 
