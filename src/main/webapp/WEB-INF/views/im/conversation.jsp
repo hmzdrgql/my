@@ -18,6 +18,7 @@
 <script type="text/javascript" src="${ctx}/static/js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/scroll-startstop.events.jquery.js"></script>
 <!--讨论区滚动条end-->
+<script charset="UTF-8" type="text/javascript" src="${ctx}/static/im.js"></script>
 </head>
 <body>
 

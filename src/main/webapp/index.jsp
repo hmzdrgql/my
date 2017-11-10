@@ -149,7 +149,7 @@
         <div class="desk-icon">
             <ul class="icon-list">
                 <li class="icon-li">
-                    <img src="${ctxStatic}/images/icon/lol13.png">
+                    <a href="${ctx}/back/link/login"><img src="${ctxStatic}/images/icon/lol13.png"></a>
                     <span>后台管理实例</span>
                 </li>
                 <li class="icon-li">

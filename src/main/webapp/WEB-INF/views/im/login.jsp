@@ -87,7 +87,7 @@
 <body>
 	<div class="container">
 		<div class="login-container">
-			<form action="${ctx}/im/link/login" method="post" id="login-form">
+			<form id="login-form" action="${ctx}/im/link/login" method="post">
 				<div class="username">
 					<span class="input-group-addon"><i class="fa fa-user fa-fw fa-2x"></i></span>
 					<input type="text" name="userName" class="input-1" placeholder="请输入账号"/>
@@ -96,10 +96,9 @@
 					<span class="input-group-addon"><i class="fa fa-key fa-fw fa-2x"></i></span>
 					<input type="text" name="passWord" class="input-2" placeholder="请输入密码"/>
 				</div>
-				<div class="password">
+				<div class="">
 					<input type="button" value="登录" class="login-btn"/>
 				</div>
-				<%--<input type="submit" value="Submit"/>--%>
 			</form>
 		</div>
 	</div>
